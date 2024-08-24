@@ -1,0 +1,42 @@
+<h1>投稿フォーム</h1>
+<%= form_with model: @post_image do |f| %>
+  <h4>タイトル</h4>
+    <%= f.text_field :title %>
+
+  <h4>画像</h4>
+    <%= f.file_field :image, accept: "image/*" %>
+
+  <h4>種類</h4>
+    <%= f.text_field :kinds %>
+
+  <h4>年齢</h4>
+    <%= f.text_field :age, placeholder: "例:◯歳◯ヶ月" %>
+
+  <h4>性別</h4>
+    <%= f.select :gender, [['♂', 'male'], ['♀', 'female']] %>
+
+  <h4>特徴</h4>
+    <%= f.text_field :features, placeholder: "例:すごく人懐っこくて元気な子です！" %>
+
+  <h4>譲渡条件</h4>
+    <%= f.text_field :transfer_condition %>
+
+  <h4>健康状態</h4>
+    <%= f.text_field :health_condition %>
+
+  <h4>ワクチン接種済み</h4>
+  <div class="field">
+    <%= f.label :vaccination, "◯ 接種済み" %>
+    <%= f.radio_button :vaccination, true %>
+
+    <%= f.label :vaccination, "× 接種済みでない" %>
+    <%= f.radio_button :vaccination, false %>
+  </div>
+
+  <h4>不妊治療</h4>
+  <div class="field">
+    <%= f.label :infertility_treatment, "◯ 治療済み" %>
+    <%= f.radio_button :infertility_treatment, true %>
+
+    <%= f.label :infertility_treatment, "× 治療済みでない" %>
+    <%= f.radio_button :infertility_treatment, false %>

@@ -1,0 +1,2 @@
+class LikeList < ApplicationRecord
+end
