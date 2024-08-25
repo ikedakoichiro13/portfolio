@@ -1,5 +1,5 @@
 <h1>投稿フォーム</h1>
-<%= form_with model: @post_image do |f| %>
+<%= form_with model: @post do |f| %>
   <h4>タイトル</h4>
     <%= f.text_field :title %>
 
@@ -13,16 +13,22 @@
     <%= f.text_field :age, placeholder: "例:◯歳◯ヶ月" %>
 
   <h4>性別</h4>
-    <%= f.select :gender, [['♂', 'male'], ['♀', 'female']] %>
+  <div class="field">
+    <%= f.label :gender, "♂" %>
+    <%= f.radio_button :gender, "male" %>
+
+    <%= f.label :gender, "♀" %>
+    <%= f.radio_button :gender, "female" %>
+  </div>
 
   <h4>特徴</h4>
     <%= f.text_field :features, placeholder: "例:すごく人懐っこくて元気な子です！" %>
 
   <h4>譲渡条件</h4>
-    <%= f.text_field :transfer_condition %>
+    <%= f.text_field :transfer_condition, placeholder: "例:タバコを吸わない方、近くにお住まいの方、など" %>
 
   <h4>健康状態</h4>
-    <%= f.text_field :health_condition %>
+    <%= f.text_field :health_condition, placeholder: "例:特に悪いところはなく至って健康です。"%>
 
   <h4>ワクチン接種済み</h4>
   <div class="field">
@@ -40,3 +46,6 @@
 
     <%= f.label :infertility_treatment, "× 治療済みでない" %>
     <%= f.radio_button :infertility_treatment, false %>
+
+    <%= f.submit '投稿' %>
+<% end %>
