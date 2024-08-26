@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 2024_08_22_120410) do
     t.string "kinds", null: false
     t.string "age", null: false
     t.string "gender", null: false
+    t.string "coat", null: false
     t.text "health_condition", null: false
     t.string "vaccination", null: false
     t.string "infertility_treatment", null: false

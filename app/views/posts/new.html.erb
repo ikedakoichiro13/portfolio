@@ -7,7 +7,7 @@
     <%= f.file_field :image, accept: "image/*" %>
 
   <h4>種類</h4>
-    <%= f.text_field :kinds %>
+    <%= f.text_field :kinds, placeholder: "例:柴犬、雑種、不明" %>
 
   <h4>年齢</h4>
     <%= f.text_field :age, placeholder: "例:◯歳◯ヶ月" %>
@@ -21,30 +21,33 @@
     <%= f.radio_button :gender, "female" %>
   </div>
 
+  <%= f.label :coat, "毛並み" %>
+<%= f.collection_select :coat, ["もふもふ", "ふわふわ", "くるくる", "長い", "短い", "硬い", "さらさら", "生えていない"], :to_s, :to_s, { include_blank: true }, { multiple: true, class: "form-control" } %>
+
   <h4>特徴</h4>
-    <%= f.text_field :features, placeholder: "例:すごく人懐っこくて元気な子です！" %>
+    <%= f.text_field :features, placeholder: "例:人懐っこくて元気です！" %>
 
   <h4>譲渡条件</h4>
-    <%= f.text_field :transfer_condition, placeholder: "例:タバコを吸わない方、近くにお住まいの方、など" %>
+    <%= f.text_field :transfer_condition, placeholder: "例:近くにお住まいの方" %>
 
   <h4>健康状態</h4>
     <%= f.text_field :health_condition, placeholder: "例:特に悪いところはなく至って健康です。"%>
 
   <h4>ワクチン接種済み</h4>
   <div class="field">
-    <%= f.label :vaccination, "◯ 接種済み" %>
+    <%= f.label :vaccination, "接種済み" %>
     <%= f.radio_button :vaccination, true %>
 
-    <%= f.label :vaccination, "× 接種済みでない" %>
+    <%= f.label :vaccination, "接種済みでない" %>
     <%= f.radio_button :vaccination, false %>
   </div>
 
   <h4>不妊治療</h4>
   <div class="field">
-    <%= f.label :infertility_treatment, "◯ 治療済み" %>
+    <%= f.label :infertility_treatment, "治療済み" %>
     <%= f.radio_button :infertility_treatment, true %>
 
-    <%= f.label :infertility_treatment, "× 治療済みでない" %>
+    <%= f.label :infertility_treatment, "治療済みでない" %>
     <%= f.radio_button :infertility_treatment, false %>
 
     <%= f.submit '投稿' %>

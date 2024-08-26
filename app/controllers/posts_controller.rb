@@ -20,5 +20,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :title, :kinds, :age, :gender, :health_condition, :vaccination, :infertility_treatmen, :features :transfer_condition)
+    params.require(:post).permit(:image, :title, :kinds, :age, :gender, :coat, :health_condition, :vaccination, :infertility_treatmen, :features, :transfer_condition)
+  end
 end
