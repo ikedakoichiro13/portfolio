@@ -1,0 +1,17 @@
+<div>
+    <p>投稿者：<%= @post.user.name %></p>
+    <% post.images.each do |image| %>
+      <%= image_tag image %>
+    <% end %>
+    <p>タイトル：<%= @post.title %></p>
+    <p>種類：<%= @post.kinds %></p>
+    <p>年齢：<%= @post.age %></p>
+    <p>性別：<%= @post.gender %></p>
+    <p>募集地域：<%= post.recruitment_area %></p>
+    <p>毛並み：<%= @post.coat %></p>
+    <p>健康状態：<%= @post.health_condition %></p>
+    <p>ワクチン接種済み：<%= @post.vaccination %></p>
+    <p>不妊治療：<%= @post.infertility_treatment %></p>
+    <p>特徴：<%= @post.features %></p>
+    <p>譲渡条件：<%= @post.transfer_condition %></p>
+  </div>

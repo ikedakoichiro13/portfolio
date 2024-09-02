@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_22_120410) do
+ActiveRecord::Schema.define(version: 2024_09_02_135247) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,11 @@ ActiveRecord::Schema.define(version: 2024_08_22_120410) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "coats", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "categoryname", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -72,6 +77,11 @@ ActiveRecord::Schema.define(version: 2024_08_22_120410) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "post_coats", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "post_contents", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "like_id", null: false
@@ -88,17 +98,15 @@ ActiveRecord::Schema.define(version: 2024_08_22_120410) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "post_genre_id", null: false
-    t.integer "post_content_id", null: false
     t.text "title", null: false
     t.string "kinds", null: false
     t.string "age", null: false
     t.string "gender", null: false
-    t.string "coat", null: false
     t.text "health_condition", null: false
-    t.string "vaccination", null: false
-    t.string "infertility_treatment", null: false
+    t.boolean "vaccination", null: false
+    t.boolean "infertility_treatment", null: false
     t.text "features", null: false
+    t.text "recruitment_area", null: false
     t.text "transfer_condition", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
