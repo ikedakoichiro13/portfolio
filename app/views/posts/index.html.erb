@@ -1,9 +1,6 @@
-<% @post.each do |post| %>
+<% @posts.each do |post| %>
   <div>
-    <% if post.images.present? %>
-      <% top_image = post.images.first %>
-      <%= image_tag top_image %>
-    <% end %>
+    <%= image_tag post.get_image %>
     <p>タイトル：<%= post.title %></p>
     <p>種類：<%= post.kinds %></p>
     <p>性別：<%= post.gender %>  年齢：<%= post.age %></p>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: "homes#top"
+  get "search" => "genres#search"
   resources :posts
   devise_for :admins
   devise_for :users

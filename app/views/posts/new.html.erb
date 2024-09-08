@@ -20,16 +20,18 @@
     <%= f.label :gender, "♀" %>
     <%= f.radio_button :gender, "female" %>
   </div>
-
+  <h4>募集地域</h4>
+    <%= f.text_field :recruitment_area, placeholder: "例:〇〇県〇〇市" %>
+    
   <h4>毛並み</h4>
-    <%= f.collection_select :coat, ["もふもふ", "ふわふわ", "くるくる", "長い", "短い", "硬い", "さらさら", "生えていない"], :to_s, :to_s, { include_blank: true }, { multiple: true, class: "form-control" } %>
-
+    <%= form_with model: @post do |f| %>
+      <%= f.label :coat, "毛並み", style: "display: none;" %>
+      <%= f.select :coat, options_for_select(['もふもふ', 'さらさら', '硬い', '長い', '短い'], :multiple => true) %>
+    <% end %>
+  
   <h4>特徴</h4>
     <%= f.text_field :features, placeholder: "例:人懐っこくて元気です！" %>
     
-  <h4>募集地域</h4>
-    <%= f.text_field :recruitment_area, placeholder: "例:〇〇県〇〇市" %>
-
   <h4>譲渡条件</h4>
     <%= f.text_field :transfer_condition, placeholder: "例:近くにお住まいの方" %>
 

@@ -2,6 +2,7 @@ class Post < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
+  has_and_belongs_to_many :coats
 
   def get_image
     unless image.attached?

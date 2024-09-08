@@ -12,3 +12,13 @@
   <input type="text" name="coat" placeholder="毛並み">
   <input type="submit" value="検索">
 </form>
+
+<% @posts.each do |post| %>
+  <div>
+    <%= image_tag post.get_image %>
+    <p>タイトル：<%= post.title %></p>
+    <p>種類：<%= post.kinds %></p>
+    <p>性別：<%= post.gender %>  年齢：<%= post.age %></p>
+    <p>募集地域：<%= post.recruitment_area %></p>
+  </div>
+<% end %>
