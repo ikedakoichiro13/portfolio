@@ -1,9 +1,15 @@
 <% @posts.each do |post| %>
   <div>
-    <%= image_tag post.get_image %>
+    <%= link_to post_path(post.id) do %>
+    <% if @post.image.attached? %>
+      <% image = @post.image.first %>
+      <%= image_tag image.variant(resize: '200x200') %>
+    <% end %>
     <p>タイトル：<%= post.title %></p>
     <p>種類：<%= post.kinds %></p>
     <p>性別：<%= post.gender %>  年齢：<%= post.age %></p>
     <p>募集地域：<%= post.recruitment_area %></p>
+    <% end %>
   </div>
+
 <% end %>

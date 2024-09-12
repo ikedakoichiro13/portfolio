@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :room_users, dependent: :destroy
+  has_many :messages, dependent: :destroy
   
   def name
     "#{last_name} #{first_name}"

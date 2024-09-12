@@ -1,24 +1,16 @@
 <h1>-APFP-里親募集</h1>
 <p>飼いたい動物の種類や特徴ががわからない初めての方でも、自分に合った動物と出会える動物里親マッチングサイトです。</p>
-
-<h3>検索</h3>
-<form action="/search" method="GET">
-  <input type="text" name="kinds" placeholder="種類">
-  <input type="text" name="age" placeholder="年齢">
-  <input type="radio" name="gender" value="M" id="male">
-  <label for="male">♂</label>
-  <input type="radio" name="gender" value="F" id="female">
-  <label for="female">♀</label>
-  <input type="text" name="coat" placeholder="毛並み">
-  <input type="submit" value="検索">
-</form>
-
 <% @posts.each do |post| %>
+
+  <%= link_to post_path(post.id) do %>
   <div>
-    <%= image_tag post.get_image %>
+    <% post.images.each do |image| %>
+      <%= image_tag(image, width:100) %>
+    <% end %>
     <p>タイトル：<%= post.title %></p>
     <p>種類：<%= post.kinds %></p>
     <p>性別：<%= post.gender %>  年齢：<%= post.age %></p>
     <p>募集地域：<%= post.recruitment_area %></p>
   </div>
+  <% end %>
 <% end %>

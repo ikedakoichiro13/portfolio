@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-end mt-4 me-4">
+  <div class="me-2">
+    <% unless @user.id == current_user.id %>
+      <% if @is_room %>
+        <%= link_to room_path(@room_id) do %>
+          <i class="fa-regular fa-envelope message"></i>
+        <% end %>
+      <% else %>
+        <%= form_for @room do |f| %>
+          <%= f.fields_for @entry do |e| %>
+            <%= e.number_field :user_id, value: @user.id, hidden: true %>
+          <% end %>
+          <%= f.submit "メッセージを送る", class: "message_link" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

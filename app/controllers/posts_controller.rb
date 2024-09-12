@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @post = Post.new
@@ -22,6 +23,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :title, :kinds, :age, :gender, :coat, :health_condition, :vaccination, :infertility_treatment, :features, :transfer_condition, :recruitment_area)
+    params.require(:post).permit(:coats, :title, :kinds, :age, :gender, :health_condition, :vaccination, :infertility_treatment, :features, :transfer_condition, :recruitment_area, images: [])
   end
 end

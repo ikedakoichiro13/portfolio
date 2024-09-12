@@ -1,0 +1,10 @@
+<h2>Results index</h2>
+<table>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <%= link_to post.title, post_path(post) %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
