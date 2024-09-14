@@ -17,10 +17,13 @@
       <% if user_signed_in? %>
       <%= render 'searches/search' %>
         <li>
-          <%= link_to '投稿フォーム', new_post_path %>
+          <%= link_to '投稿フォーム', new_public_post_path %>
         </li>
         <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+        <li>
+          <%= link_to 'マイページ', public_user_path(current_user.id) %>
         </li>
       <% else %>
         <li>

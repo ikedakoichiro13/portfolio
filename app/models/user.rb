@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
-  has_many :room_users, dependent: :destroy
-  has_many :messages, dependent: :destroy
+  has_many :room_users
+  has_many :rooms, through: :room_users
+
   
   def name
     "#{last_name} #{first_name}"

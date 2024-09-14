@@ -3,7 +3,7 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <%= link_to post.title, post_path(post) %>
+        <%= link_to post.title, public_post_path(post) %>
       </tr>
     <% end %>
   </tbody>

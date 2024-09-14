@@ -2,9 +2,14 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "search" => "searches#search"
   get '/search_result', to: 'searches#search_result', as: 'search_result'
-  resources :posts
-  resources :rooms, only: [:index, :show, :create]
-  
+
+  namespace :public do
+    resources :posts
+    resources :rooms, only: [:index, :new, :create]
+    resources :users, only: [:show, :edit, :update]
+  end
+
+
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
