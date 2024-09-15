@@ -1,8 +1,10 @@
 <div>
+  <%= link_to public_user_path(@post.id) do %>
   <p>投稿者：<%= @post.user.name %></p>
+  <% end %>
   <p>タイトル：<%= @post.title %></p>
-  <% if @post.image.attached? %>
-    <% @post.image.each do |image| %>
+  <% if @post.images.attached? %>
+    <% @post.images.each do |image| %>
       <%= image_tag image.variant(resize: '200x200') %>
     <% end %>
   <% end %>
@@ -10,7 +12,13 @@
   <p>年齢：<%= @post.age %></p>
   <p>性別：<%= @post.gender %></p>
   <p>募集地域：<%= @post.recruitment_area %></p>
-  <p>毛並み：<% @post.coats.each do |coat| %> <%= coat.name %><% end %></p>
+  <p>毛並み：
+    <% if @post.post_coats.present? %>
+      <% @post.coats.each do |coat| %>
+        <%= coat.name %>
+      <% end %>
+    <% end %>
+  </p>
   <p>健康状態：<%= @post.health_condition %></p>
   <p>ワクチン接種済み：<%= @post.vaccination %></p>
   <p>不妊治療：<%= @post.infertility_treatment %></p>

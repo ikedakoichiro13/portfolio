@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 2024_09_14_065155) do
   end
 
   create_table "post_coats", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "coat_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

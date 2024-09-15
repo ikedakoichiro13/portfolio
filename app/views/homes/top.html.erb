@@ -2,7 +2,7 @@
 <p>飼いたい動物の種類や特徴ががわからない初めての方でも、自分に合った動物と出会える動物里親マッチングサイトです。</p>
 <% @posts.each do |post| %>
 
-  <%= link_to post_path(post.id) do %>
+  <%= link_to public_post_path(post.id) do %>
   <div>
     <% post.images.each do |image| %>
       <%= image_tag(image, width:100) %>

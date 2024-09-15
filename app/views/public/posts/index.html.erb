@@ -1,6 +1,6 @@
 <% @posts.each do |post| %>
   <div>
-    <%= link_to post_path(post.id) do %>
+    <%= link_to public_posts_path(post.id) do %>
     <% if @post.image.attached? %>
       <% image = @post.image.first %>
       <%= image_tag image.variant(resize: '200x200') %>
@@ -11,5 +11,4 @@
     <p>募集地域：<%= post.recruitment_area %></p>
     <% end %>
   </div>
-
 <% end %>

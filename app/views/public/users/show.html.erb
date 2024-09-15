@@ -1,0 +1,21 @@
+<h3><%= @user.name %></h3>
+<div class="chat-wrapper">
+    <% unless @user == current_user %>
+<%= link_to(public_rooms_path(user_ids: [current_user.id, @user.id]), method: :post) do %>
+ <div class="chat-btn">
+   <div class="chat-p">メッセージを送る<i class="fa-regular fa-message"></i></div>
+   </div>
+<% end %>
+<% end %>
+</div>
+<% if @user == current_user %>
+<p><%= link_to "プロフィール編集", edit_public_user_path %></p>
+<% end %>
+<% @posts.each do |post| %>
+<div>
+  <%= link_to public_post_path(post.id) do %>
+    <%= image_tag post.images.variant(resize: '200x200') %>
+  <% end %>
+  <p><%= post.title %></p>
+</div>
+<% end %>

@@ -1,5 +1,5 @@
 <h1>投稿フォーム</h1>
-<%= form_with model: @post do |f| %>
+<%= form_with url: public_posts_path do |f| %>
   <h4>タイトル</h4>
     <%= f.text_field :title %>
 
@@ -24,7 +24,7 @@
     <%= f.text_field :recruitment_area, placeholder: "例:〇〇県〇〇市" %>
 
   <h4>毛並み</h4>
-      <%= f.select :coat, options_for_select(['もふもふ', 'さらさら', '硬い', '長い', '短い'], :multiple => true) %>
+     <%= f.collection_select :coat_ids, Coat.all, :id, :name, {}, { multiple: true, limit: 3 } %>
 
   <h4>特徴</h4>
     <%= f.text_field :features, placeholder: "例:人懐っこくて元気です！" %>

@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :room_users
   has_many :rooms, through: :room_users
-
+  has_many :messages
   
   def name
     "#{last_name} #{first_name}"

@@ -4,7 +4,6 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
-    @other_user = User.find(@profile.user.id)
   end
 
   def edit

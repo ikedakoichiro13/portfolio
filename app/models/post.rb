@@ -2,14 +2,14 @@ class Post < ApplicationRecord
 
   has_many_attached :images
   belongs_to :user
-  has_and_belongs_to_many :coats
+  has_many :post_coats
 
   def get_image
-    unless image.attached?
+    unless images.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg')
     end
-    image
+    images
   end
   
   def self.looks(search, word)

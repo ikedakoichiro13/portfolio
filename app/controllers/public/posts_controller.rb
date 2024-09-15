@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class Public::PostsController < ApplicationController
   before_action :authenticate_user!
 
   def new
@@ -23,6 +23,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:coat, :title, :kinds, :age, :gender, :health_condition, :vaccination, :infertility_treatment, :features, :transfer_condition, :recruitment_area, images: [])
+    # coatを別に保存しておく
+    params.permit(:title, :kinds, :age, :gender, :health_condition, :vaccination, :infertility_treatment, :features, :transfer_condition, :recruitment_area, images: [], coat_attributes: [:name])
   end
 end
