@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   get '/search_result', to: 'searches#search_result', as: 'search_result'
 
   namespace :public do
-    resources :posts
-    resources :rooms, only: [:index, :new, :create]
-    resources :users, only: [:show, :edit, :update]
+  resources :rooms do
+    resources :messages
   end
+  resources :posts
+  resources :rooms, only: [:index, :new, :create]
+  resources :users, only: [:show, :edit, :update]
+end
 
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {

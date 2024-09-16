@@ -12,7 +12,7 @@ class Public::RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     @room.save
-    redirect_to room_messages_path(@room)
+    redirect_to public_room_messages_path(@room)
   end
 
   private
