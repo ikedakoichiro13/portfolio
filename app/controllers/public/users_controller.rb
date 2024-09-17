@@ -14,6 +14,16 @@ class Public::UsersController < ApplicationController
     @user.user.update(user_params)
     redirect_to public_user_path(@user)
   end
+  
+  def favorites 
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+    @post = Post.find(params[:id])
+    if @favorite_posts.empty?
+      @no_favorite_message = "いいねした投稿がありません"
+    end
+  end
 
   private
 

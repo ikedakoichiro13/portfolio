@@ -15,7 +15,6 @@
     <header>
 
       <% if user_signed_in? %>
-      <%= render 'searches/search' %>
         <li>
           <%= link_to '投稿フォーム', new_public_post_path %>
         </li>
@@ -25,6 +24,9 @@
         <li>
           <%= link_to 'マイページ', public_user_path(current_user.id) %>
         </li>
+        <li>
+          <%= link_to "ルーム一覧", public_rooms_path %>
+        </li>
       <% else %>
         <li>
           <%= link_to "新規登録", new_user_registration_path %>
@@ -33,6 +35,12 @@
           <%= link_to "ログイン", new_user_session_path %>
         </li>
       <% end %>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-house"></i>
+          <% end %>
+        </li>
+        <%= render 'searches/search' %>
     </header>
     <%= yield %>
   </body>

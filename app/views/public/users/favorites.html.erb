@@ -1,0 +1,20 @@
+<% if @no_favorite_message.present? %>
+  <p><%= @no_favorite_message %></p>
+<% else %>
+<table class="table">
+  <tbody>
+    <% @favorite_posts.each do |post| %>
+    <tr>
+      <td>
+        <%= link_to post.title, public_post_path(post) %>
+        <% if post.images.attached? %>
+          <% post.images.each do |image| %>
+            <%= image_tag image.variant(resize: '200x200') %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

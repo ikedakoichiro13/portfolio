@@ -3,6 +3,11 @@ class Post < ApplicationRecord
   has_many_attached :images
   belongs_to :user
   has_many :post_coats
+  has_many :favorites, dependent: :destroy
+  
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 
   def get_image
     unless images.attached?
