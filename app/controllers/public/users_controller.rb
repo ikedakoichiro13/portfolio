@@ -5,15 +5,6 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
   end
-
-  def edit
-  end
-
-  def update
-    @user = User.find(params[:id])
-    @user.user.update(user_params)
-    redirect_to public_user_path(@user)
-  end
   
   def favorites 
     @user = User.find(params[:id])

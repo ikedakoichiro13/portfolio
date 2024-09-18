@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
   def search
     @range = "Post"
     @word = params[:word]
+    @coats = Coat.all 
 
     @posts = Post.looks(params[:search], params[:word])
     render 'search_result'

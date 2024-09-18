@@ -9,10 +9,6 @@
 <% end %>
 <% end %>
 </div>
-
-<% if @user == current_user %>
-<p><%= link_to "プロフィール編集", edit_public_user_path %></p>
-<% end %>
 <% @posts.each do |post| %>
 <div>
   <%= link_to public_post_path(post.id) do %>

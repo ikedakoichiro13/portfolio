@@ -20,11 +20,14 @@
     <% end %>
   </p>
   <p>健康状態：<%= @post.health_condition %></p>
-  <p>ワクチン接種済み：<%= @post.vaccination %></p>
-  <p>不妊治療：<%= @post.infertility_treatment %></p>
+  <p>ワクチン接種済み：<%= @post.vaccination_text %></p>
+  <p>不妊治療：<%= @post.infertility_treatment_text %></p>
   <p>特徴：<%= @post.features %></p>
   <p>譲渡条件：<%= @post.transfer_condition %></p>
   <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @post.user == current_user %>
+    <%= link_to "削除", public_post_path(@post), method: :delete %>
+  <% end %>
   
   <% if @post.favorited_by?(current_user) %>
     <p>

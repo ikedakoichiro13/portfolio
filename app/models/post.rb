@@ -3,8 +3,25 @@ class Post < ApplicationRecord
   has_many_attached :images
   belongs_to :user
   has_many :post_coats
+  has_many :coats, through: :post_coats
   has_many :favorites, dependent: :destroy
-  
+
+  def vaccination_text
+    if vaccination == true
+      "接種済み"
+    else
+      "接種済みでない"
+    end
+  end
+
+  def infertility_treatment_text
+    if infertility_treatment == true
+      "治療済み"
+    else
+      "治療済みでない"
+    end
+  end
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
@@ -16,13 +33,9 @@ class Post < ApplicationRecord
     end
     images
   end
-  
+
   def self.looks(search, word)
     if search == "perfect_match"
-      @post = Post.where("title LIKE?","#{word}")
-    elsif search == "forward_match"
-      @post = Post.where("title LIKE?","#{word}")
-    elsif search == "backward_match"
       @post = Post.where("title LIKE?","#{word}")
     elsif search == "partial_match"
       @post = Post.where("title LIKE?","#{word}")

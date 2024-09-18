@@ -1,5 +1,15 @@
 <h1>投稿フォーム</h1>
 <%= form_with url: public_posts_path do |f| %>
+
+  <h4>性別</h4>
+  <div class="field">
+    <%= f.label :dogcat, "猫" %>
+    <%= f.radio_button :dogcat, "猫" %>
+
+    <%= f.label :dogcat, "犬" %>
+    <%= f.radio_button :dogcat, "犬" %>
+  </div>
+  
   <h4>タイトル</h4>
     <%= f.text_field :title %>
 
@@ -15,10 +25,10 @@
   <h4>性別</h4>
   <div class="field">
     <%= f.label :gender, "♂" %>
-    <%= f.radio_button :gender, "male" %>
+    <%= f.radio_button :gender, "♂" %>
 
     <%= f.label :gender, "♀" %>
-    <%= f.radio_button :gender, "female" %>
+    <%= f.radio_button :gender, "♀" %>
   </div>
   <h4>募集地域</h4>
     <%= f.text_field :recruitment_area, placeholder: "例:〇〇県〇〇市" %>
