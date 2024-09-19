@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/search_result', to: 'searches#search_result', as: 'search_result'
 
   namespace :public do
-  resources :rooms, only: [:index, :new, :create] do
+  resources :rooms, only: [:index, :new, :create, :destroy] do
     resources :messages
   end
   resources :posts do
@@ -18,13 +18,14 @@ Rails.application.routes.draw do
   end
 
 
-  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
 
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
-    resources :users, only: [:destroy]
+    resources :users, only: [:show, :destroy]
+    resources :posts, only: [:show, :destroy]
   end
 
   devise_for :users, skip: [:passwords], controllers: {

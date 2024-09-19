@@ -8,27 +8,44 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to public_posts_path
+    if @post.save
+      flash[:notice] = "投稿に成功しました。"
+      redirect_to public_posts_path
+    else
+      flash.now[:alert] = "※入力内容に誤り、または未入力の項目があります。"
+      render :new
+    end
   end
 
-  def index 
-    @coats = Coat.all 
-    @posts = if params[:coat_id].present? 
-    Post.joins(:post_coats).where(post_coats: { coat_id: params[:coat_id] }) 
-    else 
-    Post.all 
-    end 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    post = Post.find(params[:id])
+    post.update(post_params)
+    redirect_to  public_post_path(post.id)
+  end
+
+  def index
+    @coats = Coat.all
+    @posts = if params[:coat_id].present?
+    Post.joins(:post_coats).where(post_coats: { coat_id: params[:coat_id] })
+    else
+    Post.all
+    end
   end
 
   def show
     @post = Post.find(params[:id])
   end
-  
+
   def destroy
     post = Post.find(params[:id])
-    post.destroy
-    redirect_to public_posts_path
+    if post.destroy
+      flash[:notice] = "投稿を削除しました。"
+      redirect_to public_posts_path
+    end
   end
 
   private

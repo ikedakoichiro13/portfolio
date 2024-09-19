@@ -4,13 +4,21 @@
   <title>Admin - Meshiterro</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <script src="https://kit.fontawesome.com/f4ff1bb341.js" crossorigin="anonymous"></script>
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
   <% if admin_signed_in? %>
-    <div class="text-right">
-      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+    <div>
+      <li>
+        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+      </li>
+      <li>
+        <%= link_to admin_dashboards_path do %>
+          <i class="fa-solid fa-house"></i>
+        <% end %>
+      </li>
     </div>
   <% end %>
   <%= yield %>

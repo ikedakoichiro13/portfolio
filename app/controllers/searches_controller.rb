@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
     @word = params[:word]
     @coats = Coat.all 
 
-    @posts = Post.looks(params[:search], params[:word])
+    @posts = Post.looks(params[:search], params[:word], params[:dogcat])
     render 'search_result'
   end
 end

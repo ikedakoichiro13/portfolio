@@ -3,7 +3,6 @@ class Public::RoomsController < ApplicationController
 
   def index
     @rooms = current_user.rooms
-  
   end
 
 
@@ -15,6 +14,14 @@ class Public::RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.save
     redirect_to public_room_messages_path(@room)
+  end
+  
+  def destroy
+    room = Room.find(params[:id])
+    if room.destroy
+      flash[:notice] = "投稿を削除しました。"
+      redirect_to public_rooms_path
+    end
   end
 
   private

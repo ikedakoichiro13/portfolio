@@ -5,6 +5,22 @@ class Post < ApplicationRecord
   has_many :post_coats
   has_many :coats, through: :post_coats
   has_many :favorites, dependent: :destroy
+  
+  validates :title, presence: true
+  validates :dogcat, presence: true
+  validates :kinds, presence: true
+  validates :age, presence: true
+  validates :gender, presence: true
+  validates :health_condition, presence: true
+  validates :vaccination, presence: true
+  validates :features, presence: true
+  validates :recruitment_area, presence: true
+  validates :transfer_condition, presence: true
+  validate :images_presence
+  
+  def images_presence
+    errors.add(:images, "を選択してください") unless images.attached?
+  end
 
   def vaccination_text
     if vaccination == true
@@ -34,11 +50,11 @@ class Post < ApplicationRecord
     images
   end
 
-  def self.looks(search, word)
+  def self.looks(search, word, dogcat)
     if search == "perfect_match"
-      @post = Post.where("title LIKE?","#{word}")
+      @post = Post.where(dogcat: dogcat).where("title LIKE ? OR recruitment_area LIKE ? OR kinds LIKE ?", "#{word}", "#{word}", "#{word}")
     elsif search == "partial_match"
-      @post = Post.where("title LIKE?","#{word}")
+      @post = Post.where(dogcat: dogcat).where("title LIKE ? OR recruitment_area LIKE ? OR kinds LIKE ?", "%#{word}%", "%#{word}%", "%#{word}%")
     else
       @post = Post.all
     end
