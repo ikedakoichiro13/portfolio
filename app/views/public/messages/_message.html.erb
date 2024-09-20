@@ -1,4 +1,4 @@
-<div class="message">
+<div class="message <%= current_user == message.user ? 'sent-message' : 'received-message' %>">
   <div class="upper-message">
     <div class="message-user">
       <%= message.user.name%>
@@ -8,8 +8,8 @@
     </div>
   </div>
   <div class="lower-message">
-  <div class="message-content">
-    <%= message.message%>
-  </div>
+    <div class="message-content">
+      <%= message.message%>
+    </div>
   </div>
 </div>

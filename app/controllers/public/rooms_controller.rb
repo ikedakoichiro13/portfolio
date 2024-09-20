@@ -19,7 +19,7 @@ class Public::RoomsController < ApplicationController
   def destroy
     room = Room.find(params[:id])
     if room.destroy
-      flash[:notice] = "投稿を削除しました。"
+      flash[:notice] = "ルームを削除しました。"
       redirect_to public_rooms_path
     end
   end

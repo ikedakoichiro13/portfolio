@@ -1,14 +1,14 @@
 <h1>ルーム一覧</h1>
 <div class="rooms">
   <% current_user.rooms.each do |room| %>
-<div class="room">
-  <div class="room-name">
-    <% @user = (room.users.where.not(id: current_user.id).to_a)[0] %>
-      <%= link_to @user.name, public_room_messages_path(room) %>
-  </div>
-  <div class="delete-room">
-    <%= link_to "削除", public_room_path(room), method: :delete %>
-  </div>
-</div>
-<% end %>
+    <div class="room">
+      <div class="room-name">
+        <% @user = (room.users.where.not(id: current_user.id).to_a)[0] %>
+        <h4><%= link_to @user.name, public_room_messages_path(room) %></h4>
+      </div>
+      <div class="delete-room">
+        <%= link_to "削除", public_room_path(room), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      </div>
+    </div>
+  <% end %>
 </div>

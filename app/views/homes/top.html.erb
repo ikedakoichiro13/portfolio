@@ -14,17 +14,24 @@
 
 <h1>-APFP-里親募集</h1>
 <p>飼いたい動物の種類や特徴ががわからない初めての方でも、自分に合った動物と出会える動物里親マッチングサイトです。</p>
+<div class="card-list-container py-5">
 <% @posts.each do |post| %>
-
-  <%= link_to public_post_path(post.id) do %>
-  <div>
-    <% post.images.each do |image| %>
-      <%= image_tag(image, width:100) %>
-    <% end %>
-    <p>タイトル：<%= post.title %></p>
-    <p>種類：<%= post.kinds %></p>
-    <p>性別：<%= post.gender %>  年齢：<%= post.age %></p>
-    <p>募集地域：<%= post.recruitment_area %></p>
+<div class="card w-50 mx-auto mt-4 shadow-lg">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-10">
+        <%= link_to public_post_path(post.id) do %>
+        <% post.images.each do |image| %>
+          <%= image_tag(image, width:100) %>
+        <% end %>
+      </div>
+        <p class="card-title">タイトル：<%= post.title %></p>
+        <p class="card-text">種類：<%= post.kinds %></p>
+        <p class="card-text">性別：<%= post.gender %>  年齢：<%= post.age %></p>
+        <p class="card-text">募集地域：<%= post.recruitment_area %></p>
+      </div>
+    </div>
   </div>
-  <% end %>
+</div>
+<% end %>
 <% end %>

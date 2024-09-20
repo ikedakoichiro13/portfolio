@@ -12,17 +12,24 @@
   <%= f.submit '検索' %> 
 <% end %>
 
-  <% @posts.each do |post| %>
-  <div>
-    <%= link_to public_post_path(post.id) do %>
-    <% if post.images.attached? %>
-      <% image = post.images.first %>
-      <%= image_tag image.variant(resize: '200x200') %>
-    <% end %>
-    <p>タイトル：<%= post.title %></p>
-    <p>種類：<%= post.kinds %></p>
-    <p>性別：<%= post.gender %>  年齢：<%= post.age %></p>
-    <p>募集地域：<%= post.recruitment_area %></p>
-    <% end %>
+<div class="card-list-container py-5">
+<% @posts.each do |post| %>
+<div class="card w-50 mx-auto mt-4 shadow-lg">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-10">
+        <%= link_to public_post_path(post.id) do %>
+        <% post.images.each do |image| %>
+          <%= image_tag(image, width:100) %>
+        <% end %>
+      </div>
+        <p class="card-title">タイトル：<%= post.title %></p>
+        <p class="card-text">種類：<%= post.kinds %></p>
+        <p class="card-text">性別：<%= post.gender %>  年齢：<%= post.age %></p>
+        <p class="card-text">募集地域：<%= post.recruitment_area %></p>
+      </div>
+    </div>
   </div>
+</div>
+<% end %>
 <% end %>

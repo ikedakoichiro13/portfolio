@@ -1,25 +1,36 @@
 <h3><%= @user.name %></h3>
 
 <div class="chat-wrapper">
-    <% unless @user == current_user %>
-<%= link_to(public_rooms_path(user_ids: [current_user.id, @user.id]), method: :post) do %>
- <div class="chat-btn">
-   <div class="chat-p">メッセージを送る<i class="fa-regular fa-message"></i></div>
-   </div>
-<% end %>
+  <% unless @user == current_user %>
+    <%= link_to(public_rooms_path(user_ids: [current_user.id, @user.id]), method: :post) do %>
+  <div class="chat-btn">
+    <div class="chat-p">メッセージを送る<i class="fa-regular fa-message"></i></div>
+  </div>
+  <% end %>
 <% end %>
 </div>
-<% @posts.each do |post| %>
-<div>
-  <%= link_to public_post_path(post.id) do %>
-  <% if post.images.attached? %>
-    <% post.images.each do |image| %>
-      <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
-    <% end %>
-  <% end %>
-  <% end %>
-  <p><%= post.title %></p>
+
+<div class="card-list-container py-5">
+   <div class="card w-50 mx-auto mt-4 shadow-lg">
+      <div class="card-body">
+      <div class="row">
+        <div class="col-10">
+        <% @posts.each do |post| %>
+        <div>
+          <%= link_to public_post_path(post.id) do %>
+          <% if post.images.attached? %>
+            <% post.images.each do |image| %>
+              <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+            <% end %>
+          <% end %>
+          <% end %>
+          <p><%= post.title %></p>
+        </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<% end %>
 <%= link_to "ルーム一覧", public_rooms_path %>
 <%= link_to "いいね一覧", favorites_public_user_path %>

@@ -23,8 +23,10 @@ class Public::PostsController < ApplicationController
 
   def update
     post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to  public_post_path(post.id)
+    if post.update(post_params)
+      flash[:notice] = "投稿を編集しました。"
+      redirect_to  public_post_path(post.id)
+    end
   end
 
   def index

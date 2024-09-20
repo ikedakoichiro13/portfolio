@@ -1,1 +1,26 @@
 <%= render "main_chat" %>
+
+<style>
+.messages {
+  display: flex;
+  flex-direction: column;
+  }
+  
+.message {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px auto;
+  max-width: 70%;
+  }
+
+.sent-message {
+  background-color: #DCF8C6;
+  float: right;
+}
+
+.received-message {
+  background-color: #FFFFFF;
+  float: left;
+}
+</style>
