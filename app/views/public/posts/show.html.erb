@@ -35,18 +35,20 @@
             <%= link_to "編集", edit_public_post_path(@post.id) %>
           <% end %>
   
-          <% if @post.favorited_by?(current_user) %>
-            <p>
-              <%= link_to public_post_favorite_path(@post), method: :delete do %>
-                ♥<%= @post.favorites.count %> いいね
-              <% end %>
-            </p>
-            <% else %>
-            <p>
-              <%= link_to public_post_favorite_path(@post), method: :post do %>
-                ♡<%= @post.favorites.count %> いいね
-              <% end %>
-            </p>
+          <% if current_user %>
+            <% if @post.favorited_by?(current_user) %>
+              <p>
+                <%= link_to public_post_favorite_path(@post), method: :delete do %>
+                  ♥<%= @post.favorites.count %> いいね
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <%= link_to public_post_favorite_path(@post), method: :post do %>
+                  ♡<%= @post.favorites.count %> いいね
+                <% end %>
+              </p>
+            <% end %>
           <% end %>
         </div>
       </div>

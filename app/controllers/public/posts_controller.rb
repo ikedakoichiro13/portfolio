@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destory]
 
   def new
     @post = Post.new
@@ -54,5 +55,10 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.permit(:dogcat, :title, :kinds, :age, :gender, :health_condition, :vaccination, :infertility_treatment, :features, :transfer_condition, :recruitment_area, images: [], coat_ids: [])
+  end
+  
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to root_url unless @post
   end
 end
