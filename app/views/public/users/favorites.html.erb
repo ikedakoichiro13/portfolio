@@ -1,20 +1,29 @@
-<% if @no_favorite_message.present? %>
-  <p><%= @no_favorite_message %></p>
-<% else %>
-<table class="table">
-  <tbody>
-    <% @favorite_posts.each do |post| %>
-    <tr>
-      <td>
-        <%= link_to post.title, public_post_path(post) %>
-        <% if post.images.attached? %>
-          <% post.images.each do |image| %>
-            <%= image_tag image.variant(resize: '200x200') %>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">いいね一覧</h5>
+      <div class="form-body p-4">
+      <% if @no_favorite_message.present? %>
+        <p><%= @no_favorite_message %></p>
+      <% else %>
+      <table class="table">
+        <tbody>
+          <% @favorite_posts.each do |post| %>
+          <tr>
+            <td>
+              <%= link_to post.title, public_post_path(post) %>
+              <% if post.images.attached? %>
+                <% post.images.each do |image| %>
+                  <%= image_tag image.variant(resize: '200x200') %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
           <% end %>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<% end %>
+        </tbody>
+      </table>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,8 +11,13 @@ class Public::RoomsController < ApplicationController
   end
   
   def create
-    @room = Room.new(room_params)
+    user_id = params[:user_id]
+    @rooms = current_user.rooms
+    @room = Room.includes(:room_users).find_by(id: @rooms, room_users: { user_id: user_id })
+    if @room == nil
+    @room = Room.new(user_ids: [current_user.id, user_id])
     @room.save
+    end
     redirect_to public_room_messages_path(@room)
   end
   

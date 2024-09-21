@@ -1,67 +1,73 @@
-<h1>編集画面</h1>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">編集画面</h5>
+      <div class="form-body p-4">
+        <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f| %>
+        <h4><性別></h4>
+        <div class="field">
+          <%= f.label :dogcat, "猫" %>
+          <%= f.radio_button :dogcat, "猫" %>
 
-<%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f| %>
-  <h4>性別</h4>
-  <div class="field">
-    <%= f.label :dogcat, "猫" %>
-    <%= f.radio_button :dogcat, "猫" %>
-
-    <%= f.label :dogcat, "犬" %>
-    <%= f.radio_button :dogcat, "犬" %>
-  </div>
+          <%= f.label :dogcat, "犬" %>
+          <%= f.radio_button :dogcat, "犬" %>
+        </div>
   
-  <h4>タイトル</h4>
-    <%= f.text_field :title %>
+        <h4><タイトル></h4>
+          <%= f.text_field :title %>
 
-  <h4>画像</h4>
-    <%= f.file_field :images, multiple: true %>
+        <h4><画像></h4>
+          <%= f.file_field :images, multiple: true %>
 
-  <h4>種類</h4>
-    <%= f.text_field :kinds, placeholder: "例:柴犬、雑種、不明" %>
+        <h4><種類></h4>
+          <%= f.text_field :kinds, placeholder: "例:柴犬、雑種、不明" %>
 
-  <h4>年齢</h4>
-    <%= f.text_field :age, placeholder: "例:◯歳◯ヶ月" %>
+        <h4><年齢></h4>
+          <%= f.text_field :age, placeholder: "例:◯歳◯ヶ月" %>
 
-  <h4>性別</h4>
-  <div class="field">
-    <%= f.label :gender, "♂" %>
-    <%= f.radio_button :gender, "♂" %>
+        <h4><性別></h4>
+        <div class="field">
+          <%= f.label :gender, "♂" %>
+          <%= f.radio_button :gender, "♂" %>
 
-    <%= f.label :gender, "♀" %>
-    <%= f.radio_button :gender, "♀" %>
+          <%= f.label :gender, "♀" %>
+          <%= f.radio_button :gender, "♀" %>
+        </div>
+        <h4><募集地域></h4>
+          <%= f.text_field :recruitment_area, placeholder: "例:〇〇県〇〇市" %>
+
+        <h4><毛並み></h4>
+           <%= f.collection_select :coat_ids, Coat.all, :id, :name, {}, { multiple: true, limit: 3 } %>
+
+        <h4><特徴></h4>
+          <%= f.text_field :features, placeholder: "例:人懐っこくて元気です！" %>
+
+        <h4><譲渡条件></h4>
+          <%= f.text_field :transfer_condition, placeholder: "例:近くにお住まいの方" %>
+
+        <h4><健康状態></h4>
+          <%= f.text_field :health_condition, placeholder: "例:特に悪いところはなく至って健康です。"%>
+
+        <h4><ワクチン接種済み></h4>
+        <div class="field">
+          <%= f.label :vaccination, "接種済み" %>
+          <%= f.radio_button :vaccination, true %>
+
+          <%= f.label :vaccination, "接種済みでない" %>
+          <%= f.radio_button :vaccination, false %>
+        </div>
+
+        <h4>不妊治療</h4>
+        <div class="field">
+          <%= f.label :infertility_treatment, "治療済み" %>
+          <%= f.radio_button :infertility_treatment, true %>
+
+          <%= f.label :infertility_treatment, "治療済みでない" %>
+          <%= f.radio_button :infertility_treatment, false %>
+
+          <%= f.submit '保存' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <h4>募集地域</h4>
-    <%= f.text_field :recruitment_area, placeholder: "例:〇〇県〇〇市" %>
-
-  <h4>毛並み</h4>
-     <%= f.collection_select :coat_ids, Coat.all, :id, :name, {}, { multiple: true, limit: 3 } %>
-
-  <h4>特徴</h4>
-    <%= f.text_field :features, placeholder: "例:人懐っこくて元気です！" %>
-
-  <h4>譲渡条件</h4>
-    <%= f.text_field :transfer_condition, placeholder: "例:近くにお住まいの方" %>
-
-  <h4>健康状態</h4>
-    <%= f.text_field :health_condition, placeholder: "例:特に悪いところはなく至って健康です。"%>
-
-  <h4>ワクチン接種済み</h4>
-  <div class="field">
-    <%= f.label :vaccination, "接種済み" %>
-    <%= f.radio_button :vaccination, true %>
-
-    <%= f.label :vaccination, "接種済みでない" %>
-    <%= f.radio_button :vaccination, false %>
-  </div>
-
-  <h4>不妊治療</h4>
-  <div class="field">
-    <%= f.label :infertility_treatment, "治療済み" %>
-    <%= f.radio_button :infertility_treatment, true %>
-
-    <%= f.label :infertility_treatment, "治療済みでない" %>
-    <%= f.radio_button :infertility_treatment, false %>
-
-    <%= f.submit '保存' %>
-  
-<% end %>
+</div>

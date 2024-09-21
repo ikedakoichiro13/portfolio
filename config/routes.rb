@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "search" => "searches#search"
   get '/search_result', to: 'searches#search_result', as: 'search_result'
+  
+  devise_scope :user do
+    post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+  end
 
   namespace :public do
   resources :rooms, only: [:index, :new, :create, :destroy] do
