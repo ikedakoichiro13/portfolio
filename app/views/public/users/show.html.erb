@@ -20,11 +20,11 @@
           <%= link_to public_post_path(post.id) do %>
           <% if post.images.attached? %>
             <% post.images.each do |image| %>
-              <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+              <%= image_tag image.variant(resize_to_limit: [200, 200]).processed %>
             <% end %>
           <% end %>
-          <% end %>
           <p><%= post.title %></p>
+          <% end %>
         </div>
         <% end %>
         </div>

@@ -5,19 +5,27 @@ class Post < ApplicationRecord
   has_many :post_coats
   has_many :coats, through: :post_coats
   has_many :favorites, dependent: :destroy
-  
+
   validates :title, presence: true
   validates :dogcat, presence: true
   validates :kinds, presence: true
   validates :age, presence: true
   validates :gender, presence: true
   validates :health_condition, presence: true
-  validates :vaccination, presence: true
+  validates :vaccination, inclusion: { in: [true, false], message: "を選択してください" }
+  validates :infertility_treatment, inclusion: { in: [true, false], message: "を選択してください" }
   validates :features, presence: true
   validates :recruitment_area, presence: true
   validates :transfer_condition, presence: true
   validate :images_presence
-  
+  validate :validate_coat_limit
+
+  def validate_coat_limit
+    unless coat_ids.compact_blank.size >= 1 && coat_ids.compact_blank.size <= 3
+      errors.add(:coat_ids, "は3つ選択してください")
+    end
+  end
+
   def images_presence
     errors.add(:images, "を選択してください") unless images.attached?
   end

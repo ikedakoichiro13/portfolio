@@ -23,7 +23,11 @@
 - 里親を探したい動物の投稿をする時
 ​
 ## 設計書
-後ほど作成予定
+詳細設計書
+https://docs.google.com/spreadsheets/d/1UgrKb7LZu9tTxKwWRlCl5bOyMDyEXtc1/edit?pli=1&gid=549108681#gid=549108681
+
+画面遷移図
+https://app.diagrams.net/?libs=general;er#G1xYEy_EO4KwYzqOXnPp-LfCzjAgaDYelE#%7B%22pageId%22%3A%22R2lEEEUBdFMjLlhIrx00%22%7D
 
 ## 実装機能リスト
 https://docs.google.com/spreadsheets/d/1ErMou7FoeQiWnU459oOc8XJw5OSFE1ZrgWHUzxRp_6Y/edit?gid=885378170#gid=885378170

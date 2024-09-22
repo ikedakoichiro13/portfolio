@@ -1,14 +1,24 @@
-<h3><%= @user.name %></h3>
+<div class="card-list-container py-5">
+   <div class="card w-50 mx-auto mt-4 shadow-lg">
+      <div class="card-body">
+      <div class="row">
+        <div class="col-10">
+        <h3><%= @user.name %></h3>
 
-<% @posts.each do |post| %>
-<div>
-  <%= link_to admin_post_path(post.id) do %>
-  <% if post.images.attached? %>
-    <% post.images.each do |image| %>
-      <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
-    <% end %>
-  <% end %>
-  <p><%= post.title %></p>
-  <% end %>
+        <% @posts.each do |post| %>
+        <div>
+          <%= link_to admin_post_path(post.id) do %>
+          <% if post.images.attached? %>
+            <% post.images.each do |image| %>
+              <%= image_tag image.variant(resize_to_limit: [200, 200]).processed %>
+            <% end %>
+          <% end %>
+          <p><%= post.title %></p>
+          <% end %>
+        </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<% end %>

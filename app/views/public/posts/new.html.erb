@@ -3,7 +3,7 @@
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light p-4 mb-0">投稿フォーム</h5>
       <div class="form-body p-4">
-      <%= form_with url: public_posts_path do |f| %>
+      <%= form_with model: @post, url: public_posts_path do |f| %>
 
         <h4><性別></h4>
         <div class="field">
@@ -13,7 +13,7 @@
           <%= f.label :dogcat, "犬" %>
           <%= f.radio_button :dogcat, "犬" %>
         </div>
-  
+
         <h4><タイトル></h4>
           <%= f.text_field :title %>
 
@@ -24,7 +24,7 @@
           <%= f.text_field :kinds, placeholder: "例:柴犬、雑種、不明" %>
 
         <h4><年齢></h4>
-          <%= f.text_field :age, placeholder: "例:◯歳◯ヶ月" %>
+          <%= f.text_field :age, placeholder: "例:◯歳◯ヶ月、不明" %>
 
         <h4><性別></h4>
         <div class="field">
@@ -37,7 +37,7 @@
         <h4><募集地域></h4>
           <%= f.text_field :recruitment_area, placeholder: "例:〇〇県〇〇市" %>
 
-        <h4><毛並み></h4>
+        <h4><毛並み>(3つまで)</h4>
            <%= f.collection_select :coat_ids, Coat.all, :id, :name, {}, { multiple: true, limit: 3 } %>
 
         <h4><特徴></h4>
@@ -65,8 +65,9 @@
 
           <%= f.label :infertility_treatment, "治療済みでない" %>
           <%= f.radio_button :infertility_treatment, false %>
+        </div>
 
-          <%= f.submit '投稿' %>
+        <%= f.submit '投稿' %>
       <% end %>
       </div>
     </div>

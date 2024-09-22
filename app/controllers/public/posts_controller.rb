@@ -27,6 +27,8 @@ class Public::PostsController < ApplicationController
     if post.update(post_params)
       flash[:notice] = "投稿を編集しました。"
       redirect_to  public_post_path(post.id)
+    else
+      render :edit
     end
   end
 
@@ -47,16 +49,16 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     if post.destroy
       flash[:notice] = "投稿を削除しました。"
-      redirect_to public_posts_path
+      redirect_to public_user_path(current_user.id)
     end
   end
 
   private
 
   def post_params
-    params.permit(:dogcat, :title, :kinds, :age, :gender, :health_condition, :vaccination, :infertility_treatment, :features, :transfer_condition, :recruitment_area, images: [], coat_ids: [])
+    params.require(:post).permit(:dogcat, :title, :kinds, :age, :gender, :health_condition, :vaccination, :infertility_treatment, :features, :transfer_condition, :recruitment_area, images: [], coat_ids: [])
   end
-  
+
   def correct_user
     @post = current_user.posts.find_by(id: params[:id])
     redirect_to root_url unless @post

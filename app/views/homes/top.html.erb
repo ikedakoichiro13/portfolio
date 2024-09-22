@@ -1,20 +1,8 @@
-<div class="search_form">
-  <%= form_with url: search_path, local: true, method: :get do |f| %>
-    <%= f.text_field :word %>
-    <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
-    <%= f.select :dogcat, options_for_select([["犬","犬"], ["猫","猫"]]) %>
-    <%= f.submit "検索", class: "btn-sm btn-primary" %>
-  <% end %>
-</div>
-
-<%= form_with url: public_posts_path, method: :get do |f| %> 
-  <%= f.select :coat_id, @coats.map { |co| [co.name, co.id] }, { include_blank: '全ての毛並み', selected: params[:coat_id] }, {} %> 
-  <%= f.submit '検索' %> 
-<% end %>
+<%= render "searches/search" %>
 
 <h1>-APFP-里親募集</h1>
 <p>飼いたい動物の種類や特徴ががわからない初めての方でも、自分に合った動物と出会える動物里親マッチングサイトです。</p>
-<p>無料新規登録で検索機能や投稿の詳細を確認、他にも様々な機能が利用できます。</p>
+<p>無料新規登録でいいねやメッセージのやり取り機能が利用できるようになります！</p>
 
 <div class="card-list-container py-5">
 <% @posts.each do |post| %>
@@ -24,7 +12,7 @@
       <div class="col-10">
         <%= link_to public_post_path(post.id) do %>
         <% post.images.each do |image| %>
-          <%= image_tag(image, width:100) %>
+          <%= image_tag(image.variant(resize_to_limit: [500, 500]).processed, width:100) %>
         <% end %>
       </div>
         <p class="card-title">タイトル：<%= post.title %></p>
